@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault()
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/user/login',
+        'http://localhost:3000/api/business/login',
         loginData
       )
       const info = response.data
@@ -105,18 +105,6 @@ function Login() {
               Login
             </Button>
           </motion.div>
-
-          <p className="mt-3">
-            Don't have an account?{' '}
-            <motion.span
-              whileHover={{ color: '#007bff' }}
-              transition={{ duration: 0.3 }}
-            >
-              <Link className="link-register" to="/register">
-                Register here
-              </Link>
-            </motion.span>
-          </p>
 
           {msg && (
             <motion.p

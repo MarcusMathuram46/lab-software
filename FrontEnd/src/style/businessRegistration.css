@@ -1,0 +1,104 @@
+/* General Styles */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #003366, #00509e);
+  padding: 20px;
+}
+
+.register-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.register-box:hover {
+  transform: scale(1.02);
+}
+
+/* Input Fields */
+.register-box .form-control {
+  border: 2px solid #003366;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.register-box .form-control:focus {
+  border-color: #00509e;
+  box-shadow: 0px 0px 5px rgba(0, 80, 158, 0.5);
+}
+
+/* Labels */
+.register-box .form-label {
+  font-weight: bold;
+  color: #003366;
+}
+
+/* Checkbox */
+.register-box .form-check-label {
+  color: #333;
+}
+
+/* Button */
+.btn-animated {
+  width: 100%;
+  background: #00509e;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-animated:hover {
+  background: #003366;
+  transform: scale(1.05);
+}
+
+.btn-animated:active {
+  transform: scale(0.95);
+}
+
+/* Success & Error Messages */
+.text-success,
+.text-danger {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .register-box {
+    padding: 20px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-box {
+    padding: 15px;
+  }
+  .btn-animated {
+    font-size: 14px;
+  }
+}
+
+/* Login Link */
+.link-login {
+  color: #00509e;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.link-login:hover {
+  color: #003366;
+  text-decoration: underline;
+}

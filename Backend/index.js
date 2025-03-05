@@ -2,15 +2,18 @@ const express = require('express')
 const { PORT } = require('./config/config')
 const sequelize = require('./config/db') // MySQL connection
 const userRoute = require('./routes/userRoute')
-
+const bodyParser = require('body-parser')
 const cors = require('cors')
-
+const businessRoutes = require('./routes/businessRoutes')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(bodyParser.json())
 
+// Routes
 app.use('/api/user', userRoute)
+app.use('/api/business', businessRoutes)
 
 
 

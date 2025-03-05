@@ -35,7 +35,7 @@ const BusinessRegister = () => {
       setMessage({ type: 'success', text: 'Registration successful!' })
 
       setTimeout(() => {
-        navigate('/home') // Redirect to home after registration
+        navigate('/')
       }, 1500)
 
       setFormData({

@@ -9,30 +9,28 @@ const Home = () => {
 
   useEffect(() => {
     const fetchBusinessDetails = async () => {
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem('authToken') // Use correct key
 
       if (!token) {
-        navigate('/login')
+        navigate('/') // Redirect if no token
         return
       }
 
       try {
         const response = await axios.get(
-          'http://localhost:5000/api/business/details',
-          {
-            headers: { Authorization: token },
-          }
+          'http://localhost:3000/api/business/details',
+          { headers: { Authorization: token } }
         )
         setBusiness(response.data)
       } catch (error) {
         console.error(error)
-        localStorage.removeItem('token')
-        navigate('/login')
+        localStorage.removeItem('authToken')
+        navigate('/')
       }
     }
 
     fetchBusinessDetails()
-  }, [navigate])
+  }, [navigate]) // Ensure navigate is a dependency
 
   if (!business) {
     return <h2 className="text-center mt-5">Loading Business Details...</h2>
@@ -67,7 +65,7 @@ const Home = () => {
             className="btn btn-danger"
             onClick={() => {
               localStorage.removeItem('token')
-              navigate('/login')
+              navigate('/')
             }}
           >
             Logout

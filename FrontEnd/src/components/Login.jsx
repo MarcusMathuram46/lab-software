@@ -17,29 +17,34 @@ function Login() {
     setLoginData({ ...loginData, [e.target.name]: e.target.value })
   }
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await axios.post(
-        'http://localhost:3000/api/business/login',
-        loginData
-      )
-      const info = response.data
+ const handleLogin = async (e) => {
+   e.preventDefault()
+   try {
+     const response = await axios.post(
+       'http://localhost:3000/api/business/login',
+       loginData
+     )
 
-      if (info.token) {
-        localStorage.setItem('authToken', info.token)
-        setAuthToken(info.token)
-        setMsg('Login successful!')
-        navigate('/home')
-      } else {
-        setMsg(info.message)
-      }
-      setLoginData({ email: '', password: '' })
-    } catch (error) {
-      setMsg(error.response?.data?.message || 'Login failed. Please try again.')
-      console.error(error)
-    }
-  }
+     const info = response.data
+
+     if (info.token) {
+       localStorage.setItem('authToken', info.token) // Ensure consistency
+       setAuthToken(info.token)
+       setMsg('Login successful!')
+
+       // Delay navigation to ensure localStorage is updated
+       setTimeout(() => navigate('/home'), 500)
+     } else {
+       setMsg(info.message)
+     }
+     setLoginData({ email: '', password: '' })
+   } catch (error) {
+     console.error('Login Error:', error.response)
+     setMsg(error.response?.data?.message || 'Login failed. Please try again.')
+   }
+ }
+
+
 
   return (
     <motion.div
@@ -105,6 +110,18 @@ function Login() {
               Login
             </Button>
           </motion.div>
+
+          <p className="mt-3">
+            Don't have an account?{' '}
+            <motion.span
+              whileHover={{ color: '#007bff' }}
+              transition={{ duration: 0.3 }}
+            >
+              <Link className="link-register" to="/register">
+                Register here
+              </Link>
+            </motion.span>
+          </p>
 
           {msg && (
             <motion.p
